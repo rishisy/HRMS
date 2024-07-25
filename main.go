@@ -27,12 +27,12 @@ func main() {
 	DB.AutoMigrate(&doctors.Doctor{})
 	DB.AutoMigrate(&patients.Patient{})
 
-	//var userrandom User
-	//userrandom.ID = 1
-	//userrandom.Name = "rishiiii"
-	//errr := DB.Create(&userrandom)
-	//print(errr)
-	//
+	var userrandom User
+	userrandom.ID = 12
+	userrandom.Name = db.GenerateUUID()
+	errr := DB.Create(&userrandom)
+	print(errr)
+
 	var user2 []User
 	DB.Find(&user2)
 

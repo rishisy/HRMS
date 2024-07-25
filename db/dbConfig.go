@@ -9,7 +9,7 @@ import (
 func Connect() *gorm.DB {
 
 	fmt.Println("Start of database File  ")
-	dsn = "?"
+	dsn := "?"
 	DB, dberr := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if dberr != nil {
 		panic(dberr)
