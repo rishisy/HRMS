@@ -6,16 +6,22 @@ import (
 	"gorm.io/gorm"
 )
 
-func Connect() *gorm.DB {
+var DB *gorm.DB
+
+func Connect() {
 
 	fmt.Println("Start of database File  ")
-	dsn := "?"
-	DB, dberr := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if dberr != nil {
-		panic(dberr)
+	
+	var err error
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic(err)
 	}
 	fmt.Println("Database connection Successfull   ", DB)
 
-	return DB
+	// Migration : Only Uncomment after changes made to patients/doctors Models
+	//DB.AutoMigrate(&User{})
+	//DB.AutoMigrate(&doctors.Doctor{})
+	//DB.AutoMigrate(&patients.Patient{})
 
 }

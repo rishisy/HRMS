@@ -1,0 +1,23 @@
+package main
+
+import (
+	"HRMS/db"
+	"fmt"
+)
+
+func main() {
+
+	var userrandom User
+	userrandom.ID = 12
+	userrandom.Name = db.GenerateUUID()
+	errr := DB.Create(&userrandom)
+	print(errr)
+
+	var user2 []User
+	DB.Find(&user2)
+
+	for _, val := range user2 {
+		fmt.Println(val.Name)
+	}
+
+}
