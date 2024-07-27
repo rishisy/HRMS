@@ -11,3 +11,13 @@ type Patient struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	DoctorId  string    `json:"doctor_id" validate:"required,len=5"` // foreign key
 }
+
+type PatientPatchObject struct {
+	ContactNo *string `json:"contact_no,omitempty" validate:"omitempty,len=10"`
+	Address   *string `json:"address,omitempty" validate:"omitempty,min=3,max=100"`
+	DoctorId  *string `json:"doctor_id,omitempty" validate:"omitempty,len=5"`
+}
+
+//ContactNo *string `json:"contact_no,omitempty" validate:"omitempty,len=10"`
+//Address   *string `json:"address,omitempty" validate:"omitempty,min=3,max=100"`
+//DoctorId  *string `json:"doctor_id,omitempty" validate:"omitempty,len=5"`
