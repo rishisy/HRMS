@@ -1,4 +1,4 @@
-// Package db is using google's UUID generator to handle uuid generation with the least collisions
+// Package server is using google's UUID generator to handle uuid generation with the least collisions
 // 16 Byte UUID is most suitable / industry standard , but going for 5 byte to meet project requirements
 package db
 

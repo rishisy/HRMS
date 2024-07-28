@@ -8,20 +8,15 @@ import (
 
 var DB *gorm.DB
 
-func Connect() {
+func Connect(dsn string) (*gorm.DB, error) {
 
-	fmt.Println("Start of database File  ")
-	
+	// fmt.Println("Start of database File  ")
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	// 	fmt.Println("Database connection Successfully   ", DB)
 	if err != nil {
-		panic(err)
+		fmt.Println("Error in server :", err)
 	}
-	fmt.Println("Database connection Successfull   ", DB)
 
-	// Migration : Only Uncomment after changes made to patients/doctors Models
-	//DB.AutoMigrate(&User{})
-	//DB.AutoMigrate(&doctors.Doctor{})
-	//DB.AutoMigrate(&patients.Patient{})
-
+	return DB, err
 }

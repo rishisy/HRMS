@@ -2,6 +2,8 @@ package main
 
 import (
 	"HRMS/db"
+	"HRMS/doctors"
+	"HRMS/patients"
 	"fmt"
 	"github.com/joho/godotenv"
 	"os"
@@ -24,13 +26,17 @@ func main() {
 		fmt.Println("Connection to Database Failed") //log can be used instead of println for maintaining logfiles
 		return
 	}
+	//Migration : Only Uncomment if you  change the patients/doctors Models
 
-	// Starting Server by creating a server object common across all files
-	server := NewServer(DB)
-	if err := server.Start(":" + getEnvVar("PORT")); err != nil {
-		fmt.Println("SERVER ERROR ", err) //log can be used instead of println for maintaining logfiles
+	if err := DB.AutoMigrate(&doctors.Doctor{}); err != nil {
+		fmt.Println("Migration falied for doctor ")
+		return
+	}
+	if err := DB.AutoMigrate(&patients.Patient{}); err != nil {
+		fmt.Println("Migration falied for Patient")
 		return
 	}
 
-	fmt.Println("Server running Successfully on ", getEnvVar("PORT"))
+	fmt.Println("Migration Performed Successfully")
+
 }
