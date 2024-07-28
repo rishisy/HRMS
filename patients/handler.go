@@ -22,7 +22,7 @@ func PostPatient(c *gin.Context) {
 
 	// Call BindJSON to bind the received JSON to newPatients
 	if err := c.BindJSON(&newPatient); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"Error : ": err.Error()})
 		return
 	}
 
